@@ -1,0 +1,3 @@
+{"accounts":[{"accountId":1493434742896431,"balance":0,"ceiling":0,"pin":"","type":"saving"}],"customerId":1494929672569,"dateOfBirth":"2000/01/01","firstName":"xuan","gender":"Male","lastName":"zhang","password":"QKD713rhb"}
+{"accounts":[{"accountId":1493434893167010,"balance":0,"ceiling":0,"pin":"","type":"saving"}],"customerId":1494929822991,"dateOfBirth":"1234/12/12","firstName":"usman","gender":"Male","lastName":"zafar","password":"JQN806ifm"}
+{"accounts":[{"accountId":1493436200621247,"balance":0,"ceiling":0,"pin":"","type":"saving"}],"customerId":1494931131755,"dateOfBirth":"1922/3/1","firstName":"xuan","gender":"Male","lastName":"zhang","password":"PJX630gav"}
