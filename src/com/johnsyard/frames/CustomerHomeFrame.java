@@ -4,10 +4,7 @@ package com.johnsyard.frames;
  * Created by xuanzhang on 15/05/2017.
  */
 
-import com.johnsyard.system.Account;
-import com.johnsyard.system.SystemController;
-import com.johnsyard.system.TermDepositAccount;
-import net.sf.json.JSONObject;
+import com.johnsyard.system.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +14,9 @@ import java.awt.event.ActionListener;
 
 public class CustomerHomeFrame extends JFrame implements ActionListener{
 
-    private JButton btCreateDeposit, btDelete, btExit;
+    private JButton btCreateDeposit, btViewDeposit, btCloseDeposit, btCloseSaving, btViewSaving,
+            btExit, btTransaction, btCloseLoan, btViewLoan, btCreateLoan, btCreateCredit, btViewCredit,
+            btSavingDeposit, btCreditWithdraw, btCloseCredit;
     private JTextField txtAmount, txtTerm;
     private JPasswordField txtPassword;
     private Container container;
@@ -27,7 +26,7 @@ public class CustomerHomeFrame extends JFrame implements ActionListener{
     private ButtonGroup bg;
 
     private String customerId;
-    private JSONObject customerInfo;
+    private Customer customerInfo;
 
     private int errorCount = 3;
 
@@ -36,9 +35,9 @@ public class CustomerHomeFrame extends JFrame implements ActionListener{
 
     public CustomerHomeFrame(String customerId){
         super("BankingSystemPrototype--CustomerHome");
-//        this.customerInfo = SystemController.checkCustomerLogin()
-        this.setSize(500, 400);
-        this.setLocation(500,250);
+        this.customerInfo = SystemController.getCustomerById(customerId);
+        this.setSize(800, 600);
+        this.setLocation(250,150);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //set the window unchangeable
         this.setResizable(false);
@@ -58,38 +57,114 @@ public class CustomerHomeFrame extends JFrame implements ActionListener{
         //add user id title
         JLabel lbWelcome = new JLabel("Welcome to Customer Page!");
         panelCustomerHome.add(lbWelcome);
-        lbWelcome.setBounds(150, 0, 250, 30);
-        
+        lbWelcome.setBounds(280, 0, 250, 30);
+
 
         JLabel lbUserType = new JLabel("Operations:");
         panelCustomerHome.add(lbUserType);
-        lbUserType.setBounds(70, 100, 150, 30);
+        lbUserType.setBounds(60, 100, 150, 30);
 
-        JLabel lbAmount = new JLabel("Amount:");
-        panelCustomerHome.add(lbAmount);
-        lbAmount.setBounds(70, 30, 150, 30);
+        JLabel lbSaving = new JLabel("Saving Account:");
+        panelCustomerHome.add(lbSaving);
+        lbSaving.setBounds(60, 140, 150, 30);
 
-        //create a text input
-        txtAmount = new JTextField(12);
-        //txt1.enable(false);
-        panelCustomerHome.add(txtAmount);
-        txtAmount.setBounds(170, 30, 200, 30);
-
-        JLabel lbTerm = new JLabel("Term:");
+        JLabel lbTerm = new JLabel("Term Deposit:");
         panelCustomerHome.add(lbTerm);
-        lbTerm.setBounds(70, 50, 150, 30);
+        lbTerm.setBounds(60, 180, 150, 30);
 
-        //create a text input
-        txtTerm = new JTextField(12);
-        //txt1.enable(false);
-        panelCustomerHome.add(txtTerm);
-        txtTerm.setBounds(170, 50, 200, 30);
+        JLabel lbLoan = new JLabel("Home Loan:");
+        panelCustomerHome.add(lbLoan);
+        lbLoan.setBounds(60, 220, 150, 30);
 
-        //create and delete button
+        JLabel lbCredit = new JLabel("Credit Account:");
+        panelCustomerHome.add(lbCredit);
+        lbCredit.setBounds(60, 260, 150, 30);
+
+        btTransaction=new JButton("Transaction");
+        btTransaction.addActionListener(this);
+        panelCustomerHome.add(btTransaction);
+        btTransaction.setBounds(170, 100, 190, 30);
+
+        //view and close button
+        btSavingDeposit=new JButton("Deposit and Withdraw");
+        btSavingDeposit.addActionListener(this);
+        panelCustomerHome.add(btSavingDeposit);
+        btSavingDeposit.setBounds(170, 140, 190, 30);
+
+        //view and close button
+        btViewSaving=new JButton("View Saving Account");
+        btViewSaving.addActionListener(this);
+        panelCustomerHome.add(btViewSaving);
+        btViewSaving.setBounds(370, 140, 190, 30);
+
+        btCloseSaving=new JButton("Close Saving Account");
+        btCloseSaving.addActionListener(this);
+        panelCustomerHome.add(btCloseSaving);
+        btCloseSaving.setBounds(570, 140, 190, 30);
+
+        //create and close button
         btCreateDeposit=new JButton("Create Term Deposit");
         btCreateDeposit.addActionListener(this);
         panelCustomerHome.add(btCreateDeposit);
-        btCreateDeposit.setBounds(170, 100, 200, 30);
+        btCreateDeposit.setBounds(170, 180, 190, 30);
+        if (customerInfo.getAccountByType("termDeposit") != null){
+            btCreateDeposit.setEnabled(false);
+        }
+
+        btViewDeposit=new JButton("View Term Deposit");
+        btViewDeposit.addActionListener(this);
+        panelCustomerHome.add(btViewDeposit);
+        btViewDeposit.setBounds(370, 180, 190, 30);
+
+        btCloseDeposit=new JButton("Close Term Deposit");
+        btCloseDeposit.addActionListener(this);
+        panelCustomerHome.add(btCloseDeposit);
+        btCloseDeposit.setBounds(570, 180, 190, 30);
+
+        //create and close button
+        btCreateLoan=new JButton("Create Home Loan");
+        btCreateLoan.addActionListener(this);
+        panelCustomerHome.add(btCreateLoan);
+        btCreateLoan.setBounds(170, 220, 190, 30);
+        if (customerInfo.getAccountByType("homeLoan") != null){
+            btCreateLoan.setEnabled(false);
+        }
+
+        btViewLoan=new JButton("View Home Loan");
+        btViewLoan.addActionListener(this);
+        panelCustomerHome.add(btViewLoan);
+        btViewLoan.setBounds(370, 220, 190, 30);
+
+        btCloseLoan=new JButton("Close Home Loan");
+        btCloseLoan.addActionListener(this);
+        panelCustomerHome.add(btCloseLoan);
+        btCloseLoan.setBounds(570, 220, 190, 30);
+
+        //create and close button
+        btCreateCredit=new JButton("Create Credit Account");
+        btCreateCredit.addActionListener(this);
+        panelCustomerHome.add(btCreateCredit);
+        btCreateCredit.setBounds(170, 260, 190, 30);
+
+        btCreditWithdraw=new JButton("Credit Account Withdraw");
+        btCreditWithdraw.addActionListener(this);
+        panelCustomerHome.add(btCreditWithdraw);
+        btCreditWithdraw.setBounds(170, 300, 190, 30);
+        btCreditWithdraw.setEnabled(false);
+        if (customerInfo.getAccountByType("credit") != null){
+            btCreateCredit.setEnabled(false);
+            btCreditWithdraw.setEnabled(true);
+        }
+
+        btViewCredit=new JButton("View Credit Account");
+        btViewCredit.addActionListener(this);
+        panelCustomerHome.add(btViewCredit);
+        btViewCredit.setBounds(370, 260, 190, 30);
+
+        btCloseCredit=new JButton("Close Credit Account");
+        btCloseCredit.addActionListener(this);
+        panelCustomerHome.add(btCloseCredit);
+        btCloseCredit.setBounds(570, 260, 190, 30);
 
 
 
@@ -97,7 +172,7 @@ public class CustomerHomeFrame extends JFrame implements ActionListener{
         btExit = new JButton("Exit");
         btExit.addActionListener(this);
         panelCustomerHome.add(btExit);
-        btExit.setBounds(170, 160, 150, 30);
+        btExit.setBounds(170, 460, 190, 30);
 
         container.add(panelCustomerHome, "login");
         this.setVisible(true);
@@ -107,19 +182,32 @@ public class CustomerHomeFrame extends JFrame implements ActionListener{
     @SuppressWarnings("deprecation")
     @Override
     public void actionPerformed(ActionEvent e){
-
-        String inputAmount = txtAmount.getText();
-        String inputTerm = txtTerm.getText();
-        //non-empty checking
-        if (inputAmount.isEmpty() || inputTerm.isEmpty()) {
-            String msg = "Amount or Term can not be empty.";
-            JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-
-
+        //create term deposit
         if(e.getSource().equals(btCreateDeposit)){
-            TermDepositAccount account = new TermDepositAccount();
+            CreateTermDepositFrame createTermDeposit = new CreateTermDepositFrame(this.customerInfo);
+            createTermDeposit.setLayout();
+            this.dispose();
+        }
+        //create home loan
+        if(e.getSource().equals(btCreateLoan)){
+            CreateHomeLoanFrame createHomeLoan = new CreateHomeLoanFrame(this.customerInfo);
+            createHomeLoan.setLayout();
+            this.dispose();
+        }
+        //create credit account
+        if(e.getSource().equals(btCreateCredit)){
+            CreditAccount creditAccount = new CreditAccount();
+            this.customerInfo.getAccounts().add(creditAccount);
+            SystemController.updateCustomer(customerInfo);
+            String msg = " Your Credit Account is created successfully!";
+            JOptionPane.showMessageDialog(null, msg, "success", JOptionPane.INFORMATION_MESSAGE);
+            btCreateCredit.setEnabled(false);
+        }
+        //view saving account
+        if(e.getSource().equals(btViewSaving)){
+            ViewSavingFrame viewSavingFrame = new ViewSavingFrame(this.customerInfo);
+            viewSavingFrame.setLayout();
+            this.dispose();
         }
 //
         //exit
@@ -128,12 +216,12 @@ public class CustomerHomeFrame extends JFrame implements ActionListener{
         }
     }
 
-//    public static void main(String[] args) {
-//        // TODO Auto-generated method stub
-//        CustomerHomeFrame ATM=new CustomerHomeFrame();
-//        ATM.setLayout();
-//        ATM.setVisible(true);
-//    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        CustomerHomeFrame ATM=new CustomerHomeFrame("1494929672569");
+        ATM.setLayout();
+        ATM.setVisible(true);
+    }
 
 }
 

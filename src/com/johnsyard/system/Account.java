@@ -8,13 +8,13 @@ public class Account {
     private long accountId;
     private double balance;
     private double ceiling;
-    private String pin;
+//    private String pin;
     private String type;
 
     public Account(){
         this.accountId = System.currentTimeMillis()*999;
         this.balance = 0;
-        this.pin = "";
+//        this.pin = "";
     }
     //deposit
     public void deposit(double money){
@@ -57,13 +57,13 @@ public class Account {
         this.ceiling = ceiling;
     }
 
-    public String getPin() {
-        return pin;
-    }
+//    public String getPin() {
+////        return pin;
+////    }
 
-    public void setPin(String pin) {
-        this.pin = pin;
-    }
+//    public void setPin(String pin) {
+//        this.pin = pin;
+//    }
 
     public String getType() {
         return type;

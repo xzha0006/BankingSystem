@@ -16,6 +16,9 @@ public class Customer {
     private String lastName;
     private String gender;
     private String dateOfBirth;
+    private String pin;
+    private boolean isFirstLogin;
+    private boolean isLocked;
     private List<Account> accounts;
 
     public Customer(){
@@ -23,6 +26,8 @@ public class Customer {
         this.lastName = "";
         this.gender = "";
         this.dateOfBirth = "";
+        this.pin = "";
+        this.isFirstLogin = true;
         //create a id and password
         this.customerId = System.currentTimeMillis();
         this.password = this.createPassword();
@@ -56,6 +61,27 @@ public class Customer {
 
         return password;
     }
+    //get account by type
+    public Account getAccountByType(String accountType){
+        Account result = null;
+        for (Account account : this.accounts){
+            if (account.getType().equals(accountType))
+            {
+                result = account;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -110,5 +136,21 @@ public class Customer {
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public boolean isFirstLogin() {
+        return isFirstLogin;
+    }
+
+    public void setFirstLogin(boolean firstLogin) {
+        isFirstLogin = firstLogin;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
     }
 }

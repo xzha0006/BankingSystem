@@ -8,27 +8,57 @@ import java.util.Date;
  * Created by xuanzhang on 16/05/2017.
  */
 public class TermDepositAccount extends Account {
-    private final double MIN_AMOUNT = 10000;
-    private final double MONTHLY_INTEREST = 0.05;
+    //interest Enum
+    private enum Interest{
+        THREE_MONTHS(3, 0.03),
+        SIX_MONTHS(6, 0.04),
+        TWELVE_MONTHS(7, 0.05);
+
+        private int term;
+        private double interest;
+
+        Interest(int term, double interest){
+            this.term = term;
+            this.interest = interest;
+        }
+        //get interest from term
+        public static double getInterestFromTerm(int term){
+            double result = 0;
+            for (Interest interestEnum: values()){
+                if (interestEnum.term == term){
+                    result = interestEnum.interest;
+                }
+            }
+            return result;
+        }
+    }
 
     private int termOfMonth;
     private String startDate;
     private String endDate;
+    private double monthlyInterest;
 
     public TermDepositAccount(){
+        super();
+        super.setType("termDeposit");
+    }
+    //constructor
+    public TermDepositAccount(int termOfMonth){
         super();
         super.setType("termDeposit");
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.startDate = sdf.format(new Date());
+        this.termOfMonth = termOfMonth;
+        this.monthlyInterest = Interest.getInterestFromTerm(termOfMonth);
     }
 
-    public double getMIN_AMOUNT() {
-        return MIN_AMOUNT;
+    public double getMonthlyInterest() {
+        return monthlyInterest;
     }
 
-    public double getMONTHLY_INTEREST() {
-        return MONTHLY_INTEREST;
+    public void setMonthlyInterest(double monthlyInterest) {
+        this.monthlyInterest = monthlyInterest;
     }
 
     public int getTermOfMonth() {

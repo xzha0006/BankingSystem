@@ -3,6 +3,7 @@ package com.johnsyard.frames;
 /**
  * Created by xuanzhang on 15/05/2017.
  */
+
 import com.johnsyard.system.Account;
 import com.johnsyard.system.SystemController;
 import net.sf.json.JSONObject;
@@ -16,9 +17,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class LoginFrame extends JFrame implements ActionListener{
+public class LoginFrame extends JFrame implements ActionListener {
 
-    private JButton btLogin,btExit;
+    private JButton btLogin, btExit;
     private JTextField txtUserId;
     private JPasswordField txtPassword;
     private Container container;
@@ -31,18 +32,19 @@ public class LoginFrame extends JFrame implements ActionListener{
 
     public static int id;
     static Account client = null;
-//
-    public LoginFrame(){
+
+    //
+    public LoginFrame() {
         super("BankingSystemPrototype");
         this.setSize(500, 400);
-        this.setLocation(500,250);
+        this.setLocation(500, 250);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //set the window unchangeable
         this.setResizable(false);
     }
 
     //layout
-    public void setLayout(){
+    public void setLayout() {
         //using card layout
         Layout = new CardLayout();
         container = getContentPane();
@@ -81,11 +83,11 @@ public class LoginFrame extends JFrame implements ActionListener{
         lbUserType.setBounds(70, 130, 150, 30);
 
         //radio buttons of user type
-        jrUser=new JRadioButton("Customer");
+        jrUser = new JRadioButton("Customer");
         jrUser.setBounds(170, 130, 100, 30);
-        jrAdmin=new JRadioButton("Admin");
+        jrAdmin = new JRadioButton("Admin");
         jrAdmin.setBounds(300, 130, 100, 30);
-        bg=new ButtonGroup();//put radio buttons into a group
+        bg = new ButtonGroup();//put radio buttons into a group
         bg.add(jrUser);
         bg.add(jrAdmin);
         panelLogin.add(jrUser);
@@ -109,83 +111,57 @@ public class LoginFrame extends JFrame implements ActionListener{
     //event listener
     @SuppressWarnings("deprecation")
     @Override
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e) {
         String inputUserId = txtUserId.getText();
         String inputPasswd = txtPassword.getText();
         //non-empty checking
         if (inputUserId.isEmpty() || inputPasswd.isEmpty()) {
             String msg = "User Id or Password can not be empty.";
             JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        } else {
 
-        if (e.getSource().equals(btLogin)) {
-            //admin login
-            if (jrAdmin.isSelected()) {
-                if (SystemController.checkAdminLogin(inputUserId, inputPasswd)) {
-                    //close login windows
-                    this.dispose();
-                    //open the admin home page
-                    AdminHomeFrame adminFrame = new AdminHomeFrame();
-                    adminFrame.setLayout();
-                } else {
-                    if (errorCount != 0) {
-                        String msg = "User id and password does not match. You still have " + --errorCount + " chances.";
-                        JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+            if (e.getSource().equals(btLogin)) {
+                //admin login
+                if (jrAdmin.isSelected()) {
+                    if (SystemController.checkAdminLogin(inputUserId, inputPasswd)) {
+                        //close login windows
+                        this.dispose();
+                        //open the admin home page
+                        AdminHomeFrame adminFrame = new AdminHomeFrame();
+                        adminFrame.setLayout();
+                    } else {
+                        if (errorCount != 0) {
+                            String msg = "User id and password does not match. You still have " + --errorCount + " chances.";
+                            JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
+                        }
 //                    else{
 //                        String msg = "Your";
 //                        JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
 //
 //                    }
+                    }
                 }
-            }
 
-            //user login
-            if (jrUser.isSelected()) {
-                if (SystemController.checkCustomerLogin(inputUserId, inputPasswd)){
-                    this.dispose();
-                    CustomerHomeFrame customerFrame = new CustomerHomeFrame(inputUserId);
-                    customerFrame.setLayout();
+                //user login
+                if (jrUser.isSelected()) {
+                    if (SystemController.checkCustomerLogin(inputUserId, inputPasswd)) {
+                        this.dispose();
+                        CustomerHomeFrame customerFrame = new CustomerHomeFrame(inputUserId);
+                        customerFrame.setLayout();
+                    }
                 }
             }
         }
-
-//
-//        //磁卡插入后，验证银行登录卡号与密码
-//        if(e.getSource().equals(btLogin))
-//        {
-//            client = db.verifyAccount(Integer.parseInt(txt1.getText()), txt2.getText());
-//            if(client!=null){
-//                Default defa=new Default();
-//                defa.defaltDemo();
-//                this.dispose();
-//                id=Integer.parseInt(txt1.getText());
-//                txt1.setText("");
-//                txt2.setText("");
-//            }else{
-//                lblwrong.setText("卡号或密码不正确，请重新输入！");
-//                txt1.setText("");
-//                txt2.setText("");
-//            }
-//        }
-//
-//        //重置输入卡号和密码
-//        if(e.getSource()==btn010)
-//        {
-//            txt1.setText("");
-//            txt2.setText("");
-//            lblwrong.setText("请注意保护好您的密码！");
-//        }
 //
         //exit
-        if(e.getSource().equals(btExit)){
+        if (e.getSource().equals(btExit)) {
             System.exit(0);
         }
     }
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        LoginFrame login=new LoginFrame();
+        LoginFrame login = new LoginFrame();
         login.setLayout();
         login.setVisible(true);
     }

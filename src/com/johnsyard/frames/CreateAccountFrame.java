@@ -32,7 +32,7 @@ public class CreateAccountFrame extends JFrame implements ActionListener{
         super("BankingSystemPrototype--CreateCustomer");
         this.setSize(500, 400);
         this.setLocation(500,250);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //set the window unchangeable
         this.setResizable(false);
 
