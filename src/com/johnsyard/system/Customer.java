@@ -28,6 +28,7 @@ public class Customer {
         this.dateOfBirth = "";
         this.pin = "";
         this.isFirstLogin = true;
+        this.isLocked = false;
         //create a id and password
         this.customerId = System.currentTimeMillis();
         this.password = this.createPassword();
@@ -68,6 +69,19 @@ public class Customer {
             if (account.getType().equals(accountType))
             {
                 result = account;
+                break;
+            }
+        }
+        return result;
+    }
+
+    //delete account by type
+    public Account deleteAccountByType(String accountType){
+        Account result = null;
+        for (Account account : this.accounts){
+            if (account.getType().equals(accountType))
+            {
+                this.accounts.remove(account);
                 break;
             }
         }

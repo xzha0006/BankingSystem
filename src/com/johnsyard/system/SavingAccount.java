@@ -7,7 +7,5 @@ public class SavingAccount extends Account {
     public SavingAccount(){
         super();
         super.setType("saving");
-        //assume each customer has 100000
-        super.setBalance(100000);
     }
 }

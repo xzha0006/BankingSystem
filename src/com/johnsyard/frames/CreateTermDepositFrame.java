@@ -107,7 +107,7 @@ public class CreateTermDepositFrame extends JFrame implements ActionListener{
     @SuppressWarnings("deprecation")
     @Override
     public void actionPerformed(ActionEvent e){
-        int term = 0;
+        int term;
         if (rbt1.isSelected()){
             term = 3;
         }else if(rbt2.isSelected()){
@@ -126,8 +126,8 @@ public class CreateTermDepositFrame extends JFrame implements ActionListener{
 
         String inputAmount = txtAmount.getText();
         //non-empty checking
-        if (ValidUtils.checkEmpty(inputAmount)) {
-            String msg = "Amount can not be empty.";
+        if (!ValidUtils.checkValidNumber(inputAmount)) {
+            String msg = "Amount should be a positive number.";
             JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             if (ValidUtils.checkDepositAmount(Double.parseDouble(inputAmount))){
@@ -135,7 +135,9 @@ public class CreateTermDepositFrame extends JFrame implements ActionListener{
                 if (Double.parseDouble(inputAmount) <= customerInfo.getAccountByType("saving").getBalance()){
                     if(e.getSource().equals(btConfirm)){
                         TermDepositAccount account = new TermDepositAccount(term);
-                        new Transaction(customerInfo.getAccountByType("saving"), account, Double.parseDouble(inputAmount)).doTransaction();
+                        Transaction transaction = new Transaction(customerInfo.getAccountByType("saving"), account, Double.parseDouble(inputAmount));
+                        transaction.doTransaction();
+                        SystemController.writeTransactionRecord(transaction);
                         customerInfo.getAccounts().add(account);
                         SystemController.updateCustomer(customerInfo);
 
