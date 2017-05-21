@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="IDEAProjects:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/IDEAProjects_jar</output-path>
+    <root id="archive" name="IDEAProjects.jar">
+      <element id="module-output" name="IDEAProjects" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/json-lib“¿¿µjar∞¸/commons-lang-2.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/json-lib“¿¿µjar∞¸/commons-beanutils-1.8.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/json-lib“¿¿µjar∞¸/ezmorph-1.0.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/json-lib“¿¿µjar∞¸/commons-collections-3.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/json-lib“¿¿µjar∞¸/json-lib-2.4-jdk15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/json-lib“¿¿µjar∞¸/commons-logging-1.1.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
