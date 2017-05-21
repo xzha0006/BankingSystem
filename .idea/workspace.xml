@@ -6,13 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="768ff8d3-ac92-471a-b880-70d4ab62a855" name="Default" comment="finished">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/IDEAProjects_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IDEAProjects/com/johnsyard/frames/CreateAccountFrame.class" afterPath="$PROJECT_DIR$/out/production/IDEAProjects/com/johnsyard/frames/CreateAccountFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IDEAProjects/com/johnsyard/frames/LoginFrame.class" afterPath="$PROJECT_DIR$/out/production/IDEAProjects/com/johnsyard/frames/LoginFrame.class" />
+    <list default="true" id="768ff8d3-ac92-471a-b880-70d4ab62a855" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IDEAProjects/com/johnsyard/adminInfo.txt" afterPath="$PROJECT_DIR$/out/production/IDEAProjects/com/johnsyard/adminInfo.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/johnsyard/system/SystemController.java" afterPath="$PROJECT_DIR$/src/com/johnsyard/system/SystemController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -97,7 +94,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateAccountFrame.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SystemController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/johnsyard/system/SystemController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-465">
+              <caret line="186" column="53" lean-forward="false" selection-start-line="186" selection-start-column="53" selection-end-line="186" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CreateAccountFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/johnsyard/frames/CreateAccountFrame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="185">
@@ -114,16 +123,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateTermDepositFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/johnsyard/frames/CreateTermDepositFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -210,7 +209,6 @@
         <option value="$PROJECT_DIR$/src/com/johnsyard/system/SavingAccount.java" />
         <option value="$PROJECT_DIR$/src/com/johnsyard/frames/ViewHomeFrame.java" />
         <option value="$PROJECT_DIR$/src/com/johnsyard/frames/ViewTransactionFrame.java" />
-        <option value="$PROJECT_DIR$/src/com/johnsyard/system/SystemController.java" />
         <option value="$PROJECT_DIR$/src/com/johnsyard/frames/CustomerHomeFrame.java" />
         <option value="$PROJECT_DIR$/src/com/johnsyard/frames/CreateTermDepositFrame.java" />
         <option value="$PROJECT_DIR$/src/com/johnsyard/frames/CreatePasswordFrame.java" />
@@ -223,6 +221,7 @@
         <option value="$PROJECT_DIR$/src/com/johnsyard/frames/LoginFrame.java" />
         <option value="$PROJECT_DIR$/src/com/johnsyard/frames/AdminHomeFrame.java" />
         <option value="$PROJECT_DIR$/src/com/johnsyard/frames/CreateAccountFrame.java" />
+        <option value="$PROJECT_DIR$/src/com/johnsyard/system/SystemController.java" />
       </list>
     </option>
   </component>
@@ -322,28 +321,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BankingSystemPrototype" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IDEAProjects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="johnsyard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frames" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -919,7 +896,7 @@
       <option name="presentableId" value="Default" />
       <updated>1494829896407</updated>
       <workItem from="1494829898489" duration="34747000" />
-      <workItem from="1495114527367" duration="61714000" />
+      <workItem from="1495114527367" duration="62617000" />
     </task>
     <task id="LOCAL-00001" summary="all account creating function are finished, frames are also finished">
       <created>1495284583984</created>
@@ -956,11 +933,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495374555654</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="finished">
+      <created>1495374573531</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1495374573531</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96461000" />
+    <option name="totallyTimeSpent" value="97364000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
@@ -1023,12 +1007,6 @@
           <line>47</line>
           <properties />
           <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/johnsyard/system/SystemController.java</url>
-          <line>237</line>
-          <properties />
-          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="33" />
@@ -1272,16 +1250,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/johnsyard/system/SystemController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="223" column="13" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/johnsyard/system/SavingAccount.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1454,6 +1422,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
           <caret line="114" column="21" lean-forward="true" selection-start-line="114" selection-start-column="21" selection-end-line="114" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/johnsyard/system/SystemController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-465">
+          <caret line="186" column="53" lean-forward="false" selection-start-line="186" selection-start-column="53" selection-end-line="186" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

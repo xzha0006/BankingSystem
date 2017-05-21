@@ -14,6 +14,7 @@ import java.util.Scanner;
  * Created by xuanzhang on 15/05/2017.
  */
 public class SystemController {
+    private static final String filePath = "/Users/xuanzhang/Documents/IDEAProjects/src/com/johnsyard/";
     private static List<JSONObject> customerList = new ArrayList<>();
     private static List<JSONObject> adminList = new ArrayList<>();
     static{
@@ -23,13 +24,13 @@ public class SystemController {
         try {
             String content = "";
             //load customer list
-            sc = new Scanner(new File("/Users/xuanzhang/Documents/IDEAProjects/src/com/johnsyard/customerInfo.txt"));
+            sc = new Scanner(new File(filePath + "customerInfo.txt"));
             while (sc.hasNext()){
                 customerInfo = JSONObject.fromObject(sc.nextLine());
                 customerList.add(customerInfo);
             }
             //load admin list
-            sc = new Scanner(new File("/Users/xuanzhang/Documents/IDEAProjects/src/com/johnsyard/adminInfo.txt"));
+            sc = new Scanner(new File(filePath + "adminInfo.txt"));
             while (sc.hasNext()){
                 adminInfo = JSONObject.fromObject(sc.nextLine());
                 adminList.add(adminInfo);
@@ -183,7 +184,7 @@ public class SystemController {
     private static void writeCustomerData(){
         PrintWriter pw = null;
         try {
-            pw = new PrintWriter(new File("/Users/xuanzhang/Documents/IDEAProjects/src/com/johnsyard/customerInfo.txt"));
+            pw = new PrintWriter(new File(filePath + "customerInfo.txt"));
             for(JSONObject item : customerList){
                 pw.write(item.toString() + "\n");
                 pw.flush();
@@ -198,7 +199,7 @@ public class SystemController {
     public static void writeTransactionRecord(Transaction transaction){
         PrintWriter pw = null;
         try {
-            pw = new PrintWriter(new FileWriter(new File("/Users/xuanzhang/Documents/IDEAProjects/src/com/johnsyard/transactionRecord.txt"), true));
+            pw = new PrintWriter(new FileWriter(new File(filePath + "transactionRecord.txt"), true));
             String record = "Transaction Id: " + transaction.getTransactionId() +
                     " DateTime: " + transaction.getDate() + " Type: " + transaction.getType() +
                     " Amount: " + transaction.getAmount() +
@@ -223,7 +224,7 @@ public class SystemController {
         String content = "";
         try {
             //load customer list
-            sc = new Scanner(new File("/Users/xuanzhang/Documents/IDEAProjects/src/com/johnsyard/transactionRecord.txt"));
+            sc = new Scanner(new File(filePath + "transactionRecord.txt"));
             while (sc.hasNext()){
                 content += sc.nextLine() + "\n";
             }
