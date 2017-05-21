@@ -4,9 +4,7 @@ import com.johnsyard.system.Customer;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -113,6 +111,9 @@ public class SystemController {
         customer.setLastName(customerInfo.get("lastName").toString());
         customer.setGender(customerInfo.get("gender").toString());
         customer.setPassword(customerInfo.get("password").toString());
+        customer.setPin(customerInfo.get("pin").toString());
+        customer.setFirstLogin(customerInfo.getBoolean("firstLogin"));
+        customer.setLocked(customerInfo.getBoolean("locked"));
 
         List<Account> accountList = jsonToAccounts(customerInfo.getJSONArray("accounts"));
         customer.setAccounts(accountList);
@@ -133,7 +134,6 @@ public class SystemController {
                     savingAccount.setAccountId(accountJson.getLong("accountId"));
                     savingAccount.setBalance(accountJson.getDouble("balance"));
                     savingAccount.setCeiling(accountJson.getDouble("ceiling"));
-//                    savingAccount.setType(accountJson.getString("type"));
                     accountList.add(savingAccount);
                     break;
 
@@ -142,8 +142,8 @@ public class SystemController {
                     termDepositAccount.setAccountId(accountJson.getLong("accountId"));
                     termDepositAccount.setMonthlyInterest(accountJson.getDouble("monthlyInterest"));
                     termDepositAccount.setBalance(accountJson.getDouble("balance"));
+                    termDepositAccount.setTermOfMonth(accountJson.getInt("termOfMonth"));
                     termDepositAccount.setCeiling(accountJson.getDouble("ceiling"));
-//                    termDepositAccount.setType(accountJson.getString("type"));
                     termDepositAccount.setStartDate(accountJson.getString("startDate"));
                     termDepositAccount.setEndDate(accountJson.getString("endDate"));
                     accountList.add(termDepositAccount);
@@ -154,7 +154,8 @@ public class SystemController {
                     homeLoanAccount.setSuburb(accountJson.getString("suburb"));
                     homeLoanAccount.setBalance(accountJson.getDouble("balance"));
                     homeLoanAccount.setCeiling(accountJson.getDouble("ceiling"));
-//                    homeLoanAccount.setType(accountJson.getString("type"));
+                    homeLoanAccount.setMonthlyLoan(accountJson.getDouble("monthlyLoan"));
+                    homeLoanAccount.setLoanAmount(accountJson.getDouble("loanAmount"));
                     homeLoanAccount.setStartDate(accountJson.getString("startDate"));
                     homeLoanAccount.setEndDate(accountJson.getString("endDate"));
                     accountList.add(homeLoanAccount);
@@ -165,6 +166,9 @@ public class SystemController {
                     creditAccount.setBalance(accountJson.getDouble("balance"));
                     creditAccount.setCeiling(accountJson.getDouble("ceiling"));
                     creditAccount.setLoanOfLastMonth(accountJson.getDouble("loanOfLastMonth"));
+                    creditAccount.setCurrentCredit(accountJson.getDouble("currentCredit"));
+                    creditAccount.setDueDate(accountJson.getString("dueDate"));
+                    creditAccount.setDailyLimitation(accountJson.getDouble("dailyLimitation"));
 //                    homeLoanAccount.setType(accountJson.getString("type"));
                     accountList.add(creditAccount);
                     break;
@@ -180,8 +184,10 @@ public class SystemController {
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(new File("/Users/xuanzhang/Documents/IDEAProjects/src/com/johnsyard/customerInfo.txt"));
-            for(JSONObject item : customerList)
+            for(JSONObject item : customerList){
                 pw.write(item.toString() + "\n");
+                pw.flush();
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }finally {
@@ -189,16 +195,44 @@ public class SystemController {
         }
     }
 
-//    private static void writeTransactionRecord(Transaction transaction){
-//        PrintWriter pw = null;
-//        try {
-//            pw = new PrintWriter(new File("/Users/xuanzhang/Documents/IDEAProjects/src/com/johnsyard/transactionRecord.txt"));
-//            for(JSONObject item : customerList)
-//                pw.write(item.toString() + "\n");
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }finally {
-//            pw.close();
-//        }
-//    }
+    public static void writeTransactionRecord(Transaction transaction){
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(new FileWriter(new File("/Users/xuanzhang/Documents/IDEAProjects/src/com/johnsyard/transactionRecord.txt"), true));
+            String record = "Transaction Id: " + transaction.getTransactionId() +
+                    " DateTime: " + transaction.getDate() + " Type: " + transaction.getType() +
+                    " Amount: " + transaction.getAmount() +
+                    " Source Account: " + transaction.getSourceAccount().getType();
+            if (transaction.getDestAccount()!= null){
+                record += " Dest Account: " + transaction.getDestAccount().getType();
+            }
+            // +
+//            transaction.getDestAccount()!= null ? "Dest Account: " + transaction.getDestAccount().getType():""
+            pw.write( record + "\n");
+            pw.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            pw.close();
+        }
+    }
+
+    //
+    public static String readTransactionRecords(){
+        Scanner sc = null;
+        String content = "";
+        try {
+            //load customer list
+            sc = new Scanner(new File("/Users/xuanzhang/Documents/IDEAProjects/src/com/johnsyard/transactionRecord.txt"));
+            while (sc.hasNext()){
+                content += sc.nextLine() + "\n";
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        finally {
+            sc.close();
+        }
+        return content;
+    }
 }

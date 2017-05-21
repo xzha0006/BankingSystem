@@ -112,8 +112,8 @@ public class CreateHomeLoanFrame extends JFrame implements ActionListener{
         String inputAmount = txtAmount.getText();
         String inputSuburb = txtSuburb.getText();
         //non-empty checking
-        if (ValidUtils.checkEmpty(inputAmount) && ValidUtils.checkEmpty(inputSuburb)) {
-            String msg = "Amount or Suburb can not be empty.";
+        if (ValidUtils.checkValidNumber(inputAmount) && ValidUtils.checkEmpty(inputSuburb)) {
+            String msg = "Amount should be a positive number.\nSuburb can not be empty.";
             JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             //check if saving account has enough balance
@@ -122,6 +122,7 @@ public class CreateHomeLoanFrame extends JFrame implements ActionListener{
                     HomeLoanAccount account = new HomeLoanAccount();
                     account.setSuburb(inputSuburb);
                     account.setLoanAmount(Double.parseDouble(inputAmount));
+                    account.initMonthlyLoan();
                     customerInfo.getAccounts().add(account);
                     SystemController.updateCustomer(customerInfo);
 

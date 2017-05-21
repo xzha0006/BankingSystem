@@ -47,7 +47,7 @@ public class TermDepositAccount extends Account {
         super();
         super.setType("termDeposit");
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.startDate = sdf.format(new Date());
         this.termOfMonth = termOfMonth;
         this.monthlyInterest = Interest.getInterestFromTerm(termOfMonth);
