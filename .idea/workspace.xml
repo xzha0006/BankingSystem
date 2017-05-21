@@ -9,7 +9,6 @@
     <list default="true" id="768ff8d3-ac92-471a-b880-70d4ab62a855" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/johnsyard/system/SystemController.java" afterPath="$PROJECT_DIR$/src/com/johnsyard/system/SystemController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -896,7 +895,7 @@
       <option name="presentableId" value="Default" />
       <updated>1494829896407</updated>
       <workItem from="1494829898489" duration="34747000" />
-      <workItem from="1495114527367" duration="62617000" />
+      <workItem from="1495114527367" duration="62630000" />
     </task>
     <task id="LOCAL-00001" summary="all account creating function are finished, frames are also finished">
       <created>1495284583984</created>
@@ -940,11 +939,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495374573531</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="finished">
+      <created>1495375484315</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1495375484315</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97364000" />
+    <option name="totallyTimeSpent" value="97377000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
