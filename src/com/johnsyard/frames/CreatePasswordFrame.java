@@ -184,12 +184,6 @@ public class CreatePasswordFrame extends JFrame implements ActionListener {
         }
     }
 
-//    public static void main(String[] args) {
-//        // TODO Auto-generated method stub
-//        CreatePasswordFrame login = new CreatePasswordFrame("Password");
-//        login.setLayout();
-//        login.setVisible(true);
-//    }
 
 }
 

@@ -87,6 +87,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         jrUser.setBounds(170, 130, 100, 30);
         jrAdmin = new JRadioButton("Admin");
         jrAdmin.setBounds(300, 130, 100, 30);
+        jrAdmin.setSelected(true);
         bg = new ButtonGroup();//put radio buttons into a group
         bg.add(jrUser);
         bg.add(jrAdmin);
@@ -106,12 +107,19 @@ public class LoginFrame extends JFrame implements ActionListener {
         btExit.setBounds(300, 180, 80, 30);
 
         container.add(panelLogin, "login");
+        this.setVisible(true);
     }
 
     //event listener
     @SuppressWarnings("deprecation")
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        //exit
+        if (e.getSource().equals(btExit)) {
+            System.exit(0);
+        }
+
         String inputUserId = txtUserId.getText();
         String inputPasswd = txtPassword.getText();
         //non-empty checking
@@ -130,15 +138,8 @@ public class LoginFrame extends JFrame implements ActionListener {
                         AdminHomeFrame adminFrame = new AdminHomeFrame();
                         adminFrame.setLayout();
                     } else {
-                        if (errorCount != 0) {
-                            String msg = "User id and password does not match. You still have " + --errorCount + " chances.";
-                            JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-//                    else{
-//                        String msg = "Your";
-//                        JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
-//
-//                    }
+                        String msg = "User id and password does not match.";
+                        JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
 
@@ -153,17 +154,14 @@ public class LoginFrame extends JFrame implements ActionListener {
             }
         }
 //
-        //exit
-        if (e.getSource().equals(btExit)) {
-            System.exit(0);
-        }
+
     }
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         LoginFrame login = new LoginFrame();
         login.setLayout();
-        login.setVisible(true);
+
     }
 
 }

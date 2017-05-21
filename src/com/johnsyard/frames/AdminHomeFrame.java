@@ -98,13 +98,5 @@ public class AdminHomeFrame extends JFrame implements ActionListener{
             System.exit(0);
         }
     }
-
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        AdminHomeFrame ATM=new AdminHomeFrame();
-        ATM.setLayout();
-        ATM.setVisible(true);
-    }
-
 }
 

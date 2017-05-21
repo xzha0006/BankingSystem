@@ -5,10 +5,8 @@ package com.johnsyard.frames;
  * Created by xuanzhang on 15/05/2017.
  */
 
-import com.johnsyard.system.Account;
-import com.johnsyard.system.Customer;
-import com.johnsyard.system.SavingAccount;
-import com.johnsyard.system.SystemController;
+import com.johnsyard.system.*;
+import sun.rmi.runtime.Log;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -74,6 +72,7 @@ public class CreateAccountFrame extends JFrame implements ActionListener{
         lbGender.setBounds(70, 130, 80, 20);
         rbt1=new JRadioButton("Female");
         rbt1.setBounds(170, 130, 100, 20);
+        rbt1.setSelected(true);
         rbt2=new JRadioButton("Male");
         rbt2.setBounds(300, 130, 100, 20);
         ButtonGroup group=new ButtonGroup();
@@ -98,11 +97,7 @@ public class CreateAccountFrame extends JFrame implements ActionListener{
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        CreateAccountFrame openA=new CreateAccountFrame();
-        openA.setLayout();
-    }
+
 
     @Override
     public void actionPerformed(ActionEvent e){
@@ -110,38 +105,33 @@ public class CreateAccountFrame extends JFrame implements ActionListener{
         if (e.getSource().equals(btSubmit)){
             //check empty first
             //need to be done
+            String firstName = txtFirstName.getText();
+            String lastName = txtLastName.getText();
+            String dob = txtDoB.getText();
+            if (ValidUtils.checkEmpty(firstName) || ValidUtils.checkEmpty(lastName) || ValidUtils.checkEmpty(dob)){
+                String msg = "Input can not be empty!\n";
+                JOptionPane.showMessageDialog(this, msg);
+            }else{
+                Account account = new SavingAccount();
+                Customer customer = new Customer();
+                customer.setFirstName(txtFirstName.getText());
+                customer.setLastName(txtLastName.getText());
+                customer.setDateOfBirth(txtDoB.getText());
+                customer.setGender(rbt1.isSelected()? rbt1.getText(): rbt2.getText());
+                customer.getAccounts().add(account);
 
-            Account account = new SavingAccount();
-            Customer customer = new Customer();
-            customer.setFirstName(txtFirstName.getText());
-            customer.setLastName(txtLastName.getText());
-            customer.setDateOfBirth(txtDoB.getText());
-            customer.setGender(rbt1.isSelected()? rbt1.getText(): rbt2.getText());
-            customer.getAccounts().add(account);
-
-            SystemController.createCustomer(customer);
-            String msg = "Customer is created successfully!\n" + customer.showIdAndPassword();
-            JOptionPane.showMessageDialog(this, msg);
+                SystemController.createCustomer(customer);
+                String msg = "Customer is created successfully!\n" + customer.showIdAndPassword();
+                JOptionPane.showMessageDialog(this, msg);
+            }
         }
 
-//        account.setName(txtname.getText());
-//        if(txtpwd.getText().equals(txtpwd1.getText())){
-//            account.setPassword(txtpwd.getText());
-//        }else{
-//            JOptionPane.showMessageDialog(this,"两次输入的密码不一致，请重新输入！");
-//        }
-//        account.setPersonId(txt_personId.getText());
-//        if(rbt1.isSelected())
-//            accountType="1";
-//        if(rbt2.isSelected())
-//            accountType="0";
-//        account.setAccountType(Integer.parseInt(accountType));
-//        account.setBalance(0);
-//        if(accountType.equals("1")){
-//            account.setCeiling(5000.0);
-//        }else{
-//            account.setCeiling(0);
-//        }
+        if (e.getSource().equals(btCancel)){
+            AdminHomeFrame adminHomeFrame = new AdminHomeFrame();
+            adminHomeFrame.setLayout();
+            this.dispose();
+        }
+
     }
 
 }

@@ -144,12 +144,6 @@ public class CreateHomeLoanFrame extends JFrame implements ActionListener{
 
     }
 
-//    public static void main(String[] args) {
-//        // TODO Auto-generated method stub
-//        CreateTermDepositFrame ATM=new CreateTermDepositFrame("1494929672569");
-//        ATM.setLayout();
-//        ATM.setVisible(true);
-//    }
 
 }
 
